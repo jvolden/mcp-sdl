@@ -13,7 +13,7 @@ FUNCTION = {
         ],
         "returns": "true on success, false on failure",
         "example": """// Set logical resolution to 1920x1080
-SDL_SetRenderLogicalPresentation(renderer, 1920, 1080, 
+SDL_SetRenderLogicalPresentation(renderer, 1920, 1080,
                                   SDL_LOGICAL_PRESENTATION_LETTERBOX);"""
     }
 }
