@@ -1,0 +1,14 @@
+{
+  "servers": {
+    "mcp-sdl": {
+      "type": "stdio",
+      "command": "uv",
+      "args": [
+        "--directory",
+        "C:\\Users\\volde\\source\\mcp-sdl",
+        "run",
+        "mcp-sdl"
+      ]
+    }
+  }
+}

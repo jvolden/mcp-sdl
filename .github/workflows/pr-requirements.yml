@@ -1,0 +1,41 @@
+name: PR Requirements
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  check-issue-link:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check for linked issue
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const prBody = context.payload.pull_request.body || '';
+          const prTitle = context.payload.pull_request.title || '';
+          
+          // Look for issue references in various formats
+          const issuePatterns = [
+            /#\d+/,                    // #123
+            /closes #\d+/i,           // closes #123
+            /fixes #\d+/i,            // fixes #123
+            /resolves #\d+/i,         // resolves #123
+            /addresses #\d+/i,        // addresses #123
+            /relates to #\d+/i,       // relates to #123
+            /issue #\d+/i             // issue #123
+          ];
+          
+          const hasIssueLink = issuePatterns.some(pattern => 
+            pattern.test(prBody) || pattern.test(prTitle)
+          );
+          
+          if (!hasIssueLink) {
+            core.setFailed(
+              'This PR must reference a GitHub issue. ' +
+              'Please add "Closes #123", "Fixes #123", "Addresses #123", ' +
+              'or similar in the PR description or title.'
+            );
+          } else {
+            console.log('✅ PR has linked issue');
+          }
