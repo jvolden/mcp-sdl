@@ -1,6 +1,8 @@
 # MCP SDL3 Server Roadmap
 
-## 0.1.0 Release
+## 0.1.0 Release - COMPLETE (January 18, 2026)
+
+**[Released as v0.1.0](https://github.com/jvolden/mcp-sdl/releases/tag/v0.1.0)** - Early prerelease of MCP SDL3 server with basic functionality!
 
 ### Core Improvements
 - [x] **Explore FastMCP** - Migrated to FastMCP, reduced code by ~78%

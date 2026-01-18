@@ -2,6 +2,8 @@
 
 A Model Context Protocol (MCP) server that provides SDL3 API documentation, code examples, and reference information for AI assistants. Built with [FastMCP](https://github.com/jlowin/fastmcp) for a clean, maintainable codebase.
 
+**Current Release:** [v0.1.0](https://github.com/jvolden/mcp-sdl/releases/tag/v0.1.0) - Early prerelease with 119 SDL3 functions and basic tooling!
+
 ## Table of Contents
 
 - [Features](#features)
