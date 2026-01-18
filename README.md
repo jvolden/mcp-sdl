@@ -2,6 +2,8 @@
 
 A Model Context Protocol (MCP) server that provides SDL3 API documentation, code examples, and reference information for AI assistants. Built with [FastMCP](https://github.com/jlowin/fastmcp) for a clean, maintainable codebase.
 
+**Current Release:** [v0.1.0](https://github.com/jvolden/mcp-sdl/releases/tag/v0.1.0) - Early prerelease with 119 SDL3 functions and basic tooling!
+
 ## Table of Contents
 
 - [Features](#features)
@@ -153,7 +155,7 @@ uv run ruff format .
 
 For VS Code users who want to test the MCP server locally:
 
-1. **Copy the template**: `cp .vscode/mcp.json.template .vscode/mcp.json`
+1. **Copy the template**: `cp mcp.json.template .vscode/mcp.json`
 2. **Update the path**: Change `/path/to/your/mcp-sdl/project` to your actual project directory
 3. **Restart VS Code**: The MCP server will be available to GitHub Copilot
 
@@ -165,6 +167,19 @@ Example `.vscode/mcp.json` (create from template):
       "type": "stdio", 
       "command": "uv",
       "args": ["--directory", "/your/actual/path/mcp-sdl", "run", "mcp-sdl"]
+    }
+  }
+}
+```
+
+Alternatively, for published releases, you can use uvx:
+```json
+{
+  "servers": {
+    "mcp-sdl": {
+      "type": "stdio",
+      "command": "uvx", 
+      "args": ["--from", "git+https://github.com/jvolden/mcp-sdl", "mcp-sdl"]
     }
   }
 }

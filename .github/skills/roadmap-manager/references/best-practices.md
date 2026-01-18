@@ -49,36 +49,42 @@ Don't combine multiple features in single entries.
 ### 5. Keep It Scannable
 Quick to read at a glance, even for completed tasks. Avoid verbose descriptions.
 
+### 6. No Emojis or Decorative Elements
+Keep documentation professional and clean. Avoid emojis, decorative symbols, or visual flourishes in roadmap text.
+
+**Good**: "0.1.0 Release - COMPLETE"
+**Bad**: "🎉 0.1.0 Release - COMPLETE ✅"
+
 ## Formatting Standards
 
-### 6. Use Standard Checkboxes
+### 7. Use Standard Checkboxes
 - Planned: `- [ ] **Name** - Description`
 - Completed: `- [x] **Name** - Description`
 - Never mix checkbox styles
 
-### 7. Bold Feature Names
+### 8. Bold Feature Names
 Always use `**Feature Name**` for the main feature name, followed by ` - description`.
 
-### 8. Consistent Categorization
+### 9. Consistent Categorization
 Group related features in the same category. Don't split related work across categories.
 
 ## Workflow Practices
 
-### 9. Update Regularly
+### 10. Update Regularly
 Mark completed items immediately with `[x]` when work finishes.
 
-### 10. Version Planning
+### 11. Version Planning
 Choose version numbers based on content:
 - **Features** → MINOR versions (0.X.0)
 - **Bug fixes only** → PATCH versions (0.0.X)  
 - **Breaking changes** → MAJOR versions (X.0.0)
 
-### 11. Order Matters
+### 12. Order Matters
 - List versions in chronological order (oldest to newest)
 - Within versions, group by logical category
 - Within categories, no specific order needed
 
-### 12. Review Before Adding
+### 13. Review Before Adding
 Before adding new features:
 1. Check if similar work is already planned
 2. Ensure the feature fits the version scope
@@ -89,6 +95,7 @@ Before adding new features:
 
 ### Don't:
 - Use vague descriptions ("improve X", "better Y")
+- Use emojis or decorative symbols
 - Create nested task lists
 - Mix completed and planned items randomly
 - Create categories for single items
