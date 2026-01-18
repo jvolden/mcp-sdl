@@ -1,0 +1,14 @@
+{
+  "servers": {
+    "mcp-sdl": {
+      "type": "stdio",
+      "command": "uv",
+      "args": [
+        "--directory",
+        "/path/to/your/mcp-sdl/project",
+        "run",
+        "mcp-sdl"
+      ]
+    }
+  }
+}
