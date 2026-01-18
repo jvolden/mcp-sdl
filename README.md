@@ -149,6 +149,27 @@ uv run ruff check --fix .
 uv run ruff format .
 ```
 
+### VS Code Setup
+
+For VS Code users who want to test the MCP server locally:
+
+1. **Copy the template**: `cp .vscode/mcp.json.template .vscode/mcp.json`
+2. **Update the path**: Change `/path/to/your/mcp-sdl/project` to your actual project directory
+3. **Restart VS Code**: The MCP server will be available to GitHub Copilot
+
+Example `.vscode/mcp.json` (create from template):
+```json
+{
+  "servers": {
+    "mcp-sdl": {
+      "type": "stdio", 
+      "command": "uv",
+      "args": ["--directory", "/your/actual/path/mcp-sdl", "run", "mcp-sdl"]
+    }
+  }
+}
+```
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed contribution guidelines.

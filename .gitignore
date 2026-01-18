@@ -15,8 +15,7 @@ env/
 .uv/
 
 # IDE
-.vscode/*
-!.vscode/mcp.json
+.vscode/
 .idea/
 *.swp
 *.swo
