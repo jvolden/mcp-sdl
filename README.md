@@ -72,48 +72,31 @@ Restart your AI assistant, and the SDL3 tools will be available.
 
 ### Example Tools
 
-- **sdl_list_example_categories**
-  - List all available SDL3 example categories from examples.libsdl.org
-  - Returns categories like "renderer", "audio", "input" with example counts
-
-- **sdl_list_examples**
-  - List all examples in a specific category
-  - Inputs:
-    - `category` (string, required): Category name (e.g., "renderer", "audio", "input")
-  - Returns list of examples with titles, descriptions, and difficulty levels
-
-- **sdl_get_example**
-  - Get the complete source code for a specific SDL3 example
-  - Inputs:
-    - `category` (string, required): Category name (e.g., "renderer", "audio")
-    - `example_id` (string, required): Example identifier (e.g., "01-clear", "06-textures")
-  - Returns full working C source code with detailed comments
-
-- **sdl_search_examples**
-  - Search for SDL3 examples by keyword
-  - Inputs:
-    - `query` (string, required): Search term (e.g., "texture", "gamepad", "audio")
-  - Returns matching examples across all categories
+- **sdl_examples**
+  - Access SDL3 code examples from examples.libsdl.org
+  - Inputs (all optional):
+    - `category` (string): Category name (e.g., "renderer", "audio", "input")
+    - `example_id` (string): Example identifier (e.g., "01-clear", "06-textures")
+    - `query` (string): Search term (e.g., "texture", "gamepad")
+  - Behavior:
+    - No parameters: List all available categories with example counts
+    - `category` only: List all examples in that category with descriptions
+    - `category` + `example_id`: Get complete source code for that example
+    - `query` only: Search for examples by keyword across all categories
 
 ### Migration Tools
 
-- **sdl_migration_lookup**
-  - Find how to migrate a specific SDL2 function, constant, or type to SDL3
-  - Inputs:
-    - `sdl2_name` (string, required): SDL2 symbol name (e.g., "SDL_OpenAudio", "SDL_INIT_VIDEO", "SDL_AudioSpec")
-  - Returns migration information including replacement function, changes, and code examples
-
-- **sdl_migration_header**
-  - Get the complete SDL2 to SDL3 migration guide for a specific header file
-  - Inputs:
-    - `header_name` (string, required): SDL2 header name (e.g., "SDL_audio.h", "SDL_render.h", "SDL_video.h")
-  - Returns comprehensive migration guide for all functions, types, and constants in that header
-
-- **sdl_migration_search**
-  - Search through SDL2 to SDL3 migration guides
-  - Inputs:
-    - `query` (string, required): Search term (e.g., "removed", "renamed", "audio callback")
-  - Returns matching migration information across all available guides
+- **sdl_migration**
+  - Access SDL2 to SDL3 migration guides and documentation
+  - Inputs (all optional):
+    - `sdl2_name` (string): SDL2 symbol name (e.g., "SDL_OpenAudio", "SDL_INIT_VIDEO", "SDL_AudioSpec")
+    - `header_name` (string): SDL2 header name (e.g., "SDL_audio.h", "SDL_render.h", "SDL_video.h")
+    - `query` (string): Search term (e.g., "removed", "renamed", "audio callback")
+  - Behavior:
+    - No parameters: List all available migration guide headers
+    - `sdl2_name` only: Look up migration info for that specific SDL2 symbol
+    - `header_name` only: Get complete migration guide for that header file
+    - `query` only: Search across all migration guides for keywords
 
 ## Usage with AI Assistants
 
@@ -127,9 +110,11 @@ Once configured, AI assistants can use this server to:
 
 The server provides accurate API documentation and examples based on SDL3's official resources.
 
-## Development
-
-```bash
+## Developmentexample categories"
+4. **Get example source code**: "Show me the SDL3 clear example from the renderer category"
+5. **Search examples**: "Find SDL3 examples about textures"
+6. **Migrate from SDL2**: "How do I migrate SDL_OpenAudio from SDL2 to SDL3?"
+7. **Search migration guides**: "Show me all SDL2 functions that were removed in SDL3
 # Clone and setup
 git clone https://github.com/jvolden/mcp-sdl.git
 cd mcp-sdl
