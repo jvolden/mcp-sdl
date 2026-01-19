@@ -14,24 +14,19 @@ class TestMCPProtocolIntegration:
 
     @pytest.mark.asyncio
     async def test_server_exposes_all_tools(self):
-        """Test that server properly registers and exposes all 9 tools."""
+        """Test that server properly registers and exposes all 4 tools."""
         # Get all registered tool names from FastMCP server
         tool_names = await mcp.get_tools()
 
-        # Verify we have all 9 expected tools
+        # Verify we have all 4 expected tools
         expected_tools = [
             "sdl_function_reference",
             "sdl_search_functions",
-            "sdl_list_example_categories",
-            "sdl_list_examples",
-            "sdl_get_example",
-            "sdl_search_examples",
-            "sdl_migration_lookup",
-            "sdl_migration_header",
-            "sdl_migration_search",
+            "sdl_examples",
+            "sdl_migration",
         ]
 
-        assert len(tool_names) == 9, f"Expected 9 tools, got {len(tool_names)}"
+        assert len(tool_names) == 4, f"Expected 4 tools, got {len(tool_names)}"
         for expected_tool in expected_tools:
             assert expected_tool in tool_names, f"Missing tool: {expected_tool}"
 

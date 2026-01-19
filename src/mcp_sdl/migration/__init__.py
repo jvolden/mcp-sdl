@@ -2,6 +2,14 @@
 
 import importlib
 from pathlib import Path
+from typing import TypedDict
+
+
+class MigrationSearchResult(TypedDict):
+    """Result from migration search."""
+    header: str
+    matches: list[str]
+
 
 # Discover all migration header modules
 current_dir = Path(__file__).parent
@@ -20,17 +28,17 @@ for header_name in sorted(header_files):
     except ImportError:
         pass
 
-def get_all_headers():
+def get_all_headers() -> list[str]:
     """Get list of all available migration headers."""
     return sorted(HEADERS.keys())
 
-def get_migration_data(header):
+def get_migration_data(header: str) -> str | None:
     """Get migration data for a specific header."""
     return HEADERS.get(header)
 
-def search_migrations(query):
+def search_migrations(query: str) -> list[MigrationSearchResult]:
     """Search across all migration data for a query string."""
-    results = []
+    results: list[MigrationSearchResult] = []
     query_lower = query.lower()
 
     for header, data in HEADERS.items():
