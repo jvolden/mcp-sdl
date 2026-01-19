@@ -1,6 +1,6 @@
 """MCP tools for SDL2 to SDL3 migration guides."""
 
-from ..migration import get_all_headers, get_migration_data, search_migrations
+from ..migration import OVERVIEW, get_all_headers, get_migration_data, search_migrations
 from ..server import mcp
 
 
@@ -92,6 +92,6 @@ async def sdl_migration(
 
         return output
 
-    # No parameters provided
+    # No parameters provided - show overview and available headers
     available = "\n".join([f"- {h}" for h in get_all_headers()])
-    return f"# SDL2 to SDL3 Migration Guides\n\nAvailable headers:\n{available}\n\nCall with header_name parameter to view a specific guide."
+    return f"{OVERVIEW}\n\n## Available Headers\n\n{available}\n\nCall with header_name parameter to view a specific guide."
