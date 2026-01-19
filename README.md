@@ -105,16 +105,18 @@ Once configured, AI assistants can use this server to:
 1. **Look up SDL3 functions**: "What does SDL_CreateRenderer do?"
 2. **Search for functions**: "Show me all SDL3 rendering functions"
 3. **Browse code examples**: "List available SDL3 renderer examples"
-4. **Get example source code**: "Show me the SDL3 texture rendering example"
-5. **Migrate from SDL2**: "How do I migrate SDL_OpenAudio from SDL2 to SDL3?"
-
-The server provides accurate API documentation and examples based on SDL3's official resources.
-
-## Developmentexample categories"
 4. **Get example source code**: "Show me the SDL3 clear example from the renderer category"
 5. **Search examples**: "Find SDL3 examples about textures"
 6. **Migrate from SDL2**: "How do I migrate SDL_OpenAudio from SDL2 to SDL3?"
-7. **Search migration guides**: "Show me all SDL2 functions that were removed in SDL3
+7. **Search migration guides**: "Show me all SDL2 functions that were removed in SDL3"
+
+The server provides accurate API documentation and examples based on SDL3's official resources.
+
+## Development
+
+### Local Development Setup
+
+```bash
 # Clone and setup
 git clone https://github.com/jvolden/mcp-sdl.git
 cd mcp-sdl
