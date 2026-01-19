@@ -29,12 +29,12 @@
 - [x] **Integration smoke tests** - 2 tests validating FastMCP protocol compatibility across version bumps
 
 ### Publishing
-- [x] **GitHub repository setup** - ✅ Public repo at https://github.com/jvolden/mcp-sdl with professional structure
-- [x] **Publishing to GitHub** - ✅ Users can install with `uvx --from git+https://github.com/jvolden/mcp-sdl mcp-sdl`
-- [x] **CI/CD pipeline** - ✅ GitHub Actions for testing (Python 3.10-3.12), linting, type checking, coverage
-- [x] **PR requirements workflow** - ✅ Enforces issue linking for all pull requests
-- [x] **Repository templates** - ✅ Issue templates (bug/feature) and PR template with checklists
-- [x] **VS Code developer setup** - ✅ Template configuration and setup instructions
+- [x] **GitHub repository setup** - Public repo at https://github.com/jvolden/mcp-sdl with professional structure
+- [x] **Publishing to GitHub** - Users can install with `uvx --from git+https://github.com/jvolden/mcp-sdl mcp-sdl`
+- [x] **CI/CD pipeline** - GitHub Actions for testing (Python 3.10-3.12), linting, type checking, coverage
+- [x] **PR requirements workflow** - Enforces issue linking for all pull requests
+- [x] **Repository templates** - Issue templates (bug/feature) and PR template with checklists
+- [x] **VS Code developer setup** - Template configuration and setup instructions
 
 ### Enhancement
 - [x] **Expand SDL3 function coverage** - Added 50 items across init and render categories (119 total)
@@ -60,14 +60,15 @@
 - [ ] **Add threading category** - Implement threading primitives
 
 ### SDL2 to SDL3 Migration Guide
-- [ ] **Complete all migration headers** - Add remaining ~40 SDL2 header migration guides (events, input, threading, etc.)
-- [ ] **Migration guide tests** - 100% test coverage for migration structure
+- [x] **Complete all migration headers** - Add remaining ~40 SDL2 header migration guides (events, input, threading, etc.)
+- [x] **Migration guide tests** - 100% test coverage for migration structure
 
 ### Tool Organization
 - [x] **Refactor tools.py into modules** - Split 675-line tools.py into api_tools, examples_tools, migration_tools
 
 ### Tool Optimization
 - [x] **Consolidate tools with smart routing** - Reduced from 9 tools to 4 smart tools using optional parameters (sdl_examples, sdl_migration unified)
+- [ ] **Review and standardize method names** - Audit all method names across codebase for clarity and consistent naming conventions (e.g., format_category_suggestions)
 - [ ] **Performance optimization** - Optimize tool response times and memory usage
 - [ ] **Tool documentation** - Enhanced inline documentation and examples for each tool
 
