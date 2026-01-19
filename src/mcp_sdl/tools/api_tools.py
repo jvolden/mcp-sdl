@@ -1,33 +1,12 @@
 """MCP tools for SDL3 API reference queries."""
 
 from ..api import SDL_CATEGORIES, SDL_FUNCTIONS
-from ..api.sdl3 import (
-    category_error,
-    category_events,
-    category_init,
-    category_keyboard,
-    category_mouse,
-    category_render,
-    category_surface,
-    category_timer,
-    category_video,
-)
+from ..api.sdl3 import CATEGORY_MODULES
 from ..api.sdl3.categories import format_category_suggestions, get_category_list
-
-# Category module mapping
-CATEGORY_MODULES = {
-    "init": category_init,
-    "video": category_video,
-    "render": category_render,
-    "events": category_events,
-    "keyboard": category_keyboard,
-    "mouse": category_mouse,
-    "error": category_error,
-    "surface": category_surface,
-    "timer": category_timer,
-}
+from ..server import mcp
 
 
+@mcp.tool
 async def sdl_function_reference(function_name: str) -> str:
     """Get API reference documentation for a specific SDL3 function
     
@@ -83,6 +62,7 @@ async def sdl_function_reference(function_name: str) -> str:
     return result
 
 
+@mcp.tool
 async def sdl_search_functions(query: str = "") -> str:
     """Search for SDL3 functions by category or keyword. Can also list all categories or get category overviews.
     

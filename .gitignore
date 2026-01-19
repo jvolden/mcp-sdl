@@ -27,6 +27,13 @@ env/
 htmlcov/
 .tox/
 
+# Type checking and linting
+.mypy_cache/
+.ruff_cache/
+.pytype/
+.dmypy.json
+dmypy.json
+
 # Distribution / packaging
 dist/
 build/

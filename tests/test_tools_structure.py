@@ -1,21 +1,7 @@
 """Tests for refactored tools structure."""
 
-import pytest
-
-from mcp_sdl.tools import (
-    # API tools
-    sdl_function_reference,
-    # Example tools
-    sdl_get_example,
-    sdl_list_example_categories,
-    sdl_list_examples,
-    # Migration tools
-    sdl_migration_header,
-    sdl_migration_lookup,
-    sdl_migration_search,
-    sdl_search_examples,
-    sdl_search_functions,
-)
+from fastmcp.client.client import Client
+from fastmcp.tools import FunctionTool
 
 
 class TestToolsStructure:
@@ -23,40 +9,46 @@ class TestToolsStructure:
 
     def test_api_tools_importable(self):
         """Test that API tools can be imported from tools package."""
-        assert callable(sdl_function_reference)
-        assert callable(sdl_search_functions)
+        from mcp_sdl.tools import sdl_function_reference, sdl_search_functions
+
+        # With @mcp.tool decorator, these become FunctionTool objects
+        assert isinstance(sdl_function_reference, FunctionTool)
+        assert isinstance(sdl_search_functions, FunctionTool)
 
     def test_example_tools_importable(self):
         """Test that example tools can be imported from tools package."""
-        assert callable(sdl_list_example_categories)
-        assert callable(sdl_list_examples)
-        assert callable(sdl_get_example)
-        assert callable(sdl_search_examples)
+        from mcp_sdl.tools import sdl_examples
+
+        # With @mcp.tool decorator, this becomes a FunctionTool object
+        assert isinstance(sdl_examples, FunctionTool)
 
     def test_migration_tools_importable(self):
         """Test that migration tools can be imported from tools package."""
-        assert callable(sdl_migration_lookup)
-        assert callable(sdl_migration_header)
-        assert callable(sdl_migration_search)
+        from mcp_sdl.tools import sdl_migration
 
-    def test_all_tools_are_async(self):
-        """Test that all tools are async functions."""
-        import inspect
+        # With @mcp.tool decorator, this becomes a FunctionTool object
+        assert isinstance(sdl_migration, FunctionTool)
+
+    def test_all_tools_registered(self):
+        """Test that all tools are registered with proper names."""
+        from mcp_sdl.tools import (
+            sdl_examples,
+            sdl_function_reference,
+            sdl_migration,
+            sdl_search_functions,
+        )
 
         all_tools = [
             sdl_function_reference,
             sdl_search_functions,
-            sdl_list_example_categories,
-            sdl_list_examples,
-            sdl_get_example,
-            sdl_search_examples,
-            sdl_migration_lookup,
-            sdl_migration_header,
-            sdl_migration_search,
+            sdl_examples,
+            sdl_migration,
         ]
 
         for tool in all_tools:
-            assert inspect.iscoroutinefunction(tool), f"{tool.__name__} should be async"
+            assert isinstance(tool, FunctionTool)
+            assert tool.name is not None
+            assert tool.description is not None
 
     def test_tool_modules_exist(self):
         """Test that tool modules exist and are importable."""
@@ -77,18 +69,13 @@ class TestToolsStructure:
         """Test that examples_tools module exports expected functions."""
         from mcp_sdl.tools import examples_tools
 
-        assert hasattr(examples_tools, "sdl_list_example_categories")
-        assert hasattr(examples_tools, "sdl_list_examples")
-        assert hasattr(examples_tools, "sdl_get_example")
-        assert hasattr(examples_tools, "sdl_search_examples")
+        assert hasattr(examples_tools, "sdl_examples")
 
     def test_migration_tools_module_exports(self):
         """Test that migration_tools module exports expected functions."""
         from mcp_sdl.tools import migration_tools
 
-        assert hasattr(migration_tools, "sdl_migration_lookup")
-        assert hasattr(migration_tools, "sdl_migration_header")
-        assert hasattr(migration_tools, "sdl_migration_search")
+        assert hasattr(migration_tools, "sdl_migration")
 
     def test_tools_package_has_dunder_all(self):
         """Test that tools package defines __all__ for explicit exports."""
@@ -96,7 +83,7 @@ class TestToolsStructure:
 
         assert hasattr(tools, "__all__")
         assert isinstance(tools.__all__, list)
-        assert len(tools.__all__) == 9  # Total number of tools
+        assert len(tools.__all__) == 4  # Total number of tools
 
     def test_all_exports_in_dunder_all(self):
         """Test that all expected tool names are in __all__."""
@@ -105,13 +92,8 @@ class TestToolsStructure:
         expected = [
             "sdl_function_reference",
             "sdl_search_functions",
-            "sdl_get_example",
-            "sdl_list_example_categories",
-            "sdl_list_examples",
-            "sdl_search_examples",
-            "sdl_migration_header",
-            "sdl_migration_lookup",
-            "sdl_migration_search",
+            "sdl_examples",
+            "sdl_migration",
         ]
 
         for tool_name in expected:
@@ -119,19 +101,19 @@ class TestToolsStructure:
 
 
 class TestToolsBackwardCompatibility:
-    """Test that tools still work the same way after refactoring."""
+    """Test that tools still work through the MCP interface after refactoring."""
 
-    @pytest.mark.asyncio
-    async def test_api_tool_still_works(self):
+    async def test_api_tool_still_works(self, client: Client):
         """Test that API tools still work after refactoring."""
-        result = await sdl_function_reference("SDL_Init")
-        assert "SDL_Init" in result
-        assert "Initialize" in result
-        assert "SDL" in result
+        result = await client.call_tool("sdl_function_reference", {"function_name": "SDL_Init"})
+        data = result.data
+        assert "SDL_Init" in data
+        assert "Initialize" in data
+        assert "SDL" in data
 
-    @pytest.mark.asyncio
-    async def test_migration_tool_still_works(self):
+    async def test_migration_tool_still_works(self, client: Client):
         """Test that migration tools still work after refactoring."""
-        result = await sdl_migration_header("SDL_audio.h")
-        assert "SDL_audio.h" in result
-        assert "SDL2" in result or "SDL3" in result
+        result = await client.call_tool("sdl_migration", {"header_name": "SDL_audio.h"})
+        data = result.data
+        assert "SDL_audio.h" in data
+        assert "SDL2" in data or "SDL3" in data

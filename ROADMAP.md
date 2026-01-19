@@ -6,8 +6,8 @@
 
 ### Core Improvements
 - [x] **Explore FastMCP** - Migrated to FastMCP, reduced code by ~78%
-- [x] **Basic MCP server** - Functional SDL3 documentation server with 12 tools
-- [x] **Tool structure** - Function reference, search, examples, category overviews, category listing, and migration guides
+- [x] **Basic MCP server** - Functional SDL3 documentation server with 9 tools
+- [x] **Tool structure** - Function reference, search, examples browsing/retrieval, and migration guides
 - [x] **Dynamic imports** - File structure as code, automatic discovery of new functions
 
 ### API Structure
@@ -67,7 +67,7 @@
 - [x] **Refactor tools.py into modules** - Split 675-line tools.py into api_tools, examples_tools, migration_tools
 
 ### Tool Optimization
-- [ ] **Design combined "smart" tools** - Reduce token usage by consolidating tools with intelligent routing (target: 3-4 smart tools instead of 9)
+- [x] **Consolidate tools with smart routing** - Reduced from 9 tools to 4 smart tools using optional parameters (sdl_examples, sdl_migration unified)
 - [ ] **Performance optimization** - Optimize tool response times and memory usage
 - [ ] **Tool documentation** - Enhanced inline documentation and examples for each tool
 

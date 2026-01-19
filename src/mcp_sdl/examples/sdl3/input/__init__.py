@@ -3,6 +3,8 @@
 import importlib
 from pathlib import Path
 
+DESCRIPTION = "Input handling examples (joystick, gamepad)"
+
 # Dynamic imports of example files
 current_dir = Path(__file__).parent
 module_files = [f.stem for f in current_dir.glob("*.py") if f.stem != "__init__"]

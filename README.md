@@ -22,10 +22,9 @@ A Model Context Protocol (MCP) server that provides SDL3 API documentation, code
 
 - **SDL3 Function Reference**: Look up any SDL3 function with detailed API documentation
 - **Function Search**: Search for functions by category or keyword  
-- **Code Examples**: Get practical code examples for common SDL3 tasks
-- **Complete Example Programs**: Browse and retrieve full working examples from examples.libsdl.org
-- **Category Overviews**: Learn about SDL3 subsystems (video, audio, rendering, etc.)
-- **Multi-language Support**: Examples available in C, C++, and other languages
+- **SDL3 Code Examples**: Browse and retrieve full working examples from examples.libsdl.org
+- **Example Search**: Find examples by keyword across all categories
+- **SDL2 to SDL3 Migration Guides**: Comprehensive migration guides for transitioning from SDL2 to SDL3
 
 ## Installation
 
@@ -57,6 +56,8 @@ Restart your AI assistant, and the SDL3 tools will be available.
 
 ## Available Tools
 
+### API Reference Tools
+
 - **sdl_function_reference**
   - Get detailed API documentation for a specific SDL3 function
   - Inputs:
@@ -66,63 +67,54 @@ Restart your AI assistant, and the SDL3 tools will be available.
 - **sdl_search_functions**
   - Search for SDL3 functions by category or keyword
   - Inputs:
-    - `query` (string, required): Search term or category name (e.g., "window", "audio", "render", "event")
+    - `query` (string, optional): Search term or category name (e.g., "window", "audio", "render", "event"). If empty, returns all functions.
   - Returns list of matching functions with descriptions
 
-- **sdl_code_example**
-  - Get practical code examples for common SDL3 tasks
-  - Inputs:
-    - `task` (string, required): Description of the task (e.g., "create window", "event loop", "render")
-    - `language` (string, optional): Programming language (default: "c")
-  - Returns complete working code example for the requested task
+### Example Tools
 
-- **sdl_category_overview**
-  - Get a comprehensive overview of SDL3 functionality by category
-  - Inputs:
-    - `category` (string, required): Category name (e.g., "initialization", "video", "audio", "rendering")
-  - Returns overview of the category with key functions and concepts
+- **sdl_examples**
+  - Access SDL3 code examples from examples.libsdl.org
+  - Inputs (all optional):
+    - `category` (string): Category name (e.g., "renderer", "audio", "input")
+    - `example_id` (string): Example identifier (e.g., "01-clear", "06-textures")
+    - `query` (string): Search term (e.g., "texture", "gamepad")
+  - Behavior:
+    - No parameters: List all available categories with example counts
+    - `category` only: List all examples in that category with descriptions
+    - `category` + `example_id`: Get complete source code for that example
+    - `query` only: Search for examples by keyword across all categories
 
-- **sdl_list_categories**
-  - List all available SDL3 API categories (both implemented and planned)
-  - Returns comprehensive list of categories with descriptions and implementation status
+### Migration Tools
 
-- **sdl_list_example_categories**
-  - List all available SDL3 example categories from examples.libsdl.org
-  - Returns categories like "renderer", "audio", "input" with example counts
-
-- **sdl_list_examples**
-  - List all examples in a specific category
-  - Inputs:
-    - `category` (string, required): Category name (e.g., "renderer", "audio", "input")
-  - Returns list of examples with titles, descriptions, and difficulty levels
-
-- **sdl_get_example**
-  - Get the complete source code for a specific SDL3 example
-  - Inputs:
-    - `category` (string, required): Category name (e.g., "renderer", "audio")
-    - `example_id` (string, required): Example identifier (e.g., "01-clear", "06-textures")
-  - Returns full working C source code with detailed comments
-
-- **sdl_search_examples**
-  - Search for SDL3 examples by keyword
-  - Inputs:
-    - `query` (string, required): Search term (e.g., "texture", "gamepad", "audio")
-  - Returns matching examples across all categories
+- **sdl_migration**
+  - Access SDL2 to SDL3 migration guides and documentation
+  - Inputs (all optional):
+    - `sdl2_name` (string): SDL2 symbol name (e.g., "SDL_OpenAudio", "SDL_INIT_VIDEO", "SDL_AudioSpec")
+    - `header_name` (string): SDL2 header name (e.g., "SDL_audio.h", "SDL_render.h", "SDL_video.h")
+    - `query` (string): Search term (e.g., "removed", "renamed", "audio callback")
+  - Behavior:
+    - No parameters: List all available migration guide headers
+    - `sdl2_name` only: Look up migration info for that specific SDL2 symbol
+    - `header_name` only: Get complete migration guide for that header file
+    - `query` only: Search across all migration guides for keywords
 
 ## Usage with AI Assistants
 
 Once configured, AI assistants can use this server to:
 
 1. **Look up SDL3 functions**: "What does SDL_CreateRenderer do?"
-2. **Search for functions**: "Show me SDL3 functions for handling events"
-3. **Get code examples**: "Give me an example of creating an SDL3 window"
-4. **Learn about categories**: "Explain SDL3's rendering system"
+2. **Search for functions**: "Show me all SDL3 rendering functions"
+3. **Browse code examples**: "List available SDL3 renderer examples"
+4. **Get example source code**: "Show me the SDL3 texture rendering example"
+5. **Migrate from SDL2**: "How do I migrate SDL_OpenAudio from SDL2 to SDL3?"
 
-The server provides accurate API documentation based on SDL3's official API.
+The server provides accurate API documentation and examples based on SDL3's official resources.
 
-## Development
-
-```bash
+## Developmentexample categories"
+4. **Get example source code**: "Show me the SDL3 clear example from the renderer category"
+5. **Search examples**: "Find SDL3 examples about textures"
+6. **Migrate from SDL2**: "How do I migrate SDL_OpenAudio from SDL2 to SDL3?"
+7. **Search migration guides**: "Show me all SDL2 functions that were removed in SDL3
 # Clone and setup
 git clone https://github.com/jvolden/mcp-sdl.git
 cd mcp-sdl
