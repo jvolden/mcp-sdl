@@ -51,7 +51,7 @@
 - [ ] **Branch protection** - Configure GitHub branch protection rules and required status checks
 
 ### SDL3 Function Coverage
-- [ ] **Complete render category** - Add remaining ~50 advanced rendering functions (geometry, GPU API, platform-specific)
+- [x] **Complete render category** - Add remaining ~50 advanced rendering functions (geometry, GPU API, platform-specific)
 - [ ] **Complete video category** - Finish window and display management
 - [ ] **Complete events category** - Add all event handling functions
 - [ ] **Complete keyboard/mouse categories** - Finish input handling
